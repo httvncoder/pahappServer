@@ -1,0 +1,14 @@
+{
+  "name": "pahapp",
+  "version": "0.0.1",
+  "description": "app per avisar de desnonaments. PAH",
+  "main": "server.js",
+  "dependencies": {
+      "mongoose": "~3.6.11",
+      "express": "^4.7.1",
+      "method-override": "^2.1.2",
+      "body-parser": "^1.5.1",
+      "jsonwebtoken" : "latest",
+      "morgan" : "latest"
+  }
+}

@@ -1,0 +1,27 @@
+user
+{
+    "username": "user1",
+    "password": "user1",
+    "description":   "descripcio user 1",
+    "icon":   "",
+    "mail":   "user1@user.com",
+    "admin": true
+}
+
+auth user
+{
+    "username": "user1",
+    "password": "user1"
+}
+
+eviction
+{
+    "title": "desnonament 1",
+    "day": "25/08/2016",
+    "hour":   "09h",
+    "direction":   "c/Aurora",
+    "description":   "asdf asdf asdf descripció",
+    "access":   "<M> L2 i L3 Paral·lel",
+    "city":   "Barcelona",
+    "district":   "Raval"
+}
