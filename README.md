@@ -3,12 +3,12 @@
 MEAN (Mongodb + Express + Angular + Nodejs)
 ### funcionalitats de l'API:
 
- **users**:
+ **users**
 - crear
 - get users
 - auth users (login)
 
- **evictions**:
+ **evictions**
  - post new eviction
  - get all evictions
 
