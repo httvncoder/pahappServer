@@ -32,7 +32,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $stateProvider
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -40,46 +40,55 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.desnonaments', {
-    url: '/desnonaments',
+  .state('tab.evictions', {
+    url: '/evictions',
     views: {
-      'tab-desnonaments': {
-        templateUrl: 'templates/tab-desnonaments.html',
-        controller: 'DesnonamentsCtrl'
+      'tab-evictions': {
+        templateUrl: 'templates/tab-evictions.html',
+        controller: 'EvictionsCtrl'
+      }
+    }
+  })
+  .state('tab.eviction-detail', {
+    url: '/evictions/:evictionId',
+    views: {
+      'tab-evictions': {
+        templateUrl: 'templates/eviction-detail.html',
+        controller: 'EvictionDetailCtrl'
       }
     }
   })
 
-  .state('tab.assemblees', {
-      url: '/assemblees',
+  .state('tab.assemblies', {
+      url: '/assemblies',
       views: {
-        'tab-assemblees': {
-          templateUrl: 'templates/tab-assemblees.html',
-          controller: 'AssembleesCtrl'
+        'tab-assemblies': {
+          templateUrl: 'templates/tab-assemblies.html',
+          controller: 'AssembliesCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.assembly-detail', {
+      url: '/assemblies/:assemblyId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/assemblea-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-assemblies': {
+          templateUrl: 'templates/assembly-detail.html',
+          controller: 'AssemblyDetailCtrl'
         }
       }
     })
 
-  .state('tab.opcions', {
-    url: '/opcions',
+  .state('tab.options', {
+    url: '/options',
     views: {
-      'tab-opcions': {
-        templateUrl: 'templates/tab-opcions.html',
-        controller: 'OpcionsCtrl'
+      'tab-options': {
+        templateUrl: 'templates/tab-options.html',
+        controller: 'OptionsCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/desnonaments');
+  $urlRouterProvider.otherwise('/tab/evictions');
 
 });

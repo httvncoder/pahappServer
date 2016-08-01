@@ -1,10 +1,13 @@
 angular.module('starter.controllers', [])
 
-.controller('DesnonamentsCtrl', function($scope, Evictions) {
+.controller('EvictionsCtrl', function($scope, Evictions) {
     $scope.evictions = Evictions.all();
 })
+.controller('EvictionDetailCtrl', function($scope, $stateParams, Evictions) {
+  $scope.eviction = Evictions.get($stateParams.evictionId);
+})
 
-.controller('AssembleesCtrl', function($scope, Assemblees) {
+.controller('AssembliesCtrl', function($scope, Assemblies) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -13,17 +16,17 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.assemblees = Assemblees.all();
-  $scope.remove = function(assemblea) {
-    Assemblees.remove(assemblea);
+  $scope.assemblies = Assemblies.all();
+  $scope.remove = function(assembly) {
+    Assemblies.remove(assembly);
   };
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('AssemblyDetailCtrl', function($scope, $stateParams, Assemblies) {
+  $scope.assembly = Assemblies.get($stateParams.assemblyId);
 })
 
-.controller('OpcionsCtrl', function($scope) {
+.controller('OptionsCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
