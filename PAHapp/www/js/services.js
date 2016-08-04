@@ -166,6 +166,42 @@ angular.module('starter.services', [])
       access:   'metro <L2> i <L3> Paral·lel',
       city:   'Barcelona',
       district:   'Raval'
+  }, {
+      id: 6,
+      name: 'PAH 6',
+      mail: 'contacte@pah.com',
+      direction:   'c/Aurora',
+      description:   'asdf asdf asdf descripció',
+      access:   'metro <L2> i <L3> Paral·lel',
+      city:   'Barcelona',
+      district:   'Raval'
+  }, {
+      id: 7,
+      name: 'PAH 7',
+      mail: 'contacte@pah.com',
+      direction:   'c/Aurora',
+      description:   'asdf asdf asdf descripció',
+      access:   'metro <L2> i <L3> Paral·lel',
+      city:   'Barcelona',
+      district:   'Raval'
+  }, {
+      id: 8,
+      name: 'PAH 8',
+      mail: 'contacte@pah.com',
+      direction:   'c/Aurora',
+      description:   'asdf asdf asdf descripció',
+      access:   'metro <L2> i <L3> Paral·lel',
+      city:   'Barcelona',
+      district:   'Raval'
+  }, {
+      id: 9,
+      name: 'PAH 9',
+      mail: 'contacte@pah.com',
+      direction:   'c/Aurora',
+      description:   'asdf asdf asdf descripció',
+      access:   'metro <L2> i <L3> Paral·lel',
+      city:   'Barcelona',
+      district:   'Raval'
   }];
 
 

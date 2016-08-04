@@ -6,6 +6,12 @@
 -->
 <ion-view view-title="{{assembly.name}}">
   <ion-content class="padding">
+      <button ng-click="followAssembly()" ng-hide="isFollowing()" class="button button-balanced item-note">
+        Seguir!
+      </button>
+      <button ng-click="unfollowAssembly()" ng-hide="!isFollowing()" class="button button-assertive item-note">
+        Deixar de seguir!
+      </button>
     <h2>
       {{assembly.name}}
     </h2>
@@ -16,5 +22,7 @@
     <p>
         {{assembly.mail}}
     </p>
+
+    <img src='img/stopdesnonaments.png' />
   </ion-content>
 </ion-view>

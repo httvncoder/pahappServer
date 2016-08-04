@@ -20,14 +20,50 @@ angular.module('starter.controllers', [])
   $scope.remove = function(assembly) {
     Assemblies.remove(assembly);
   };
+  $scope.isFollowing=function(namegiv){
+      if(localStorage.getItem(namegiv))
+      {
+          return(localStorage.getItem(namegiv));
+      }else{
+          return(false);
+      }
+  };
 })
 
 .controller('AssemblyDetailCtrl', function($scope, $stateParams, Assemblies) {
   $scope.assembly = Assemblies.get($stateParams.assemblyId);
+  $scope.followAssembly= function(){
+      /*var oldFollowing = window.localStorage.getItem("following");
+      oldFollowing = oldFollowing + ", " + $scope.assembly.name;
+      window.localStorage.setItem("following", oldFollowing);*/
+      window.localStorage.setItem($scope.assembly.name, true);
+  };
+  $scope.unfollowAssembly= function(){
+      /*var oldFollowing = window.localStorage.getItem("following");
+      oldFollowing = oldFollowing + ", " + $scope.assembly.name;
+      window.localStorage.setItem("following", oldFollowing);*/
+
+      //window.localStorage.setItem($scope.assembly.name, false);
+      window.localStorage.removeItem($scope.assembly.name);
+  };
+  $scope.isFollowing=function(){
+      if(localStorage.getItem($scope.assembly.name))
+      {
+          return($scope.assembly.name);
+      }else{
+          return(false);
+      }
+  };
+
 })
 
 .controller('OptionsCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
+  };
+  $scope.resetFollowing = function(){
+      //window.localStorage.removeItem("following");
+      //window.localStorage.setItem("following", "");
+      window.localStorage.clear();
   };
 });
