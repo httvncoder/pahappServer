@@ -1,12 +1,17 @@
-<ion-view view-title="Opcions">
+<ion-view view-title="{{ 'Options' | translate }}">
   <ion-content>
     <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        Notificacions
-    </ion-toggle>
-    <button ng-click="resetFollowing()" class="button button-royal">
-      Reseteja seguiments!
-    </button>
+        <ion-toggle ng-model="settings.enableFriends">
+            <p translate="Notifications">Notificacions</p>
+        </ion-toggle>
+        <button ng-click="showConfirm()" class="button button-royal">
+          <i class="icon ion-power"></i> <span translate="Reset_Followings">Reseteja seguiments!</span>
+        </button>
+        <p translate="language">Language</p>
+        <button class="button button-calm" ng-click="ChangeLanguage('catala')">català</button>
+        <button class="button button-calm" ng-click="ChangeLanguage('castellano')">castellano</button>
+
+        <button class="button button-calm" ng-click="ChangeLanguage('esperanto')">esperanto</button>
     </ion-list>
   </ion-content>
 </ion-view>

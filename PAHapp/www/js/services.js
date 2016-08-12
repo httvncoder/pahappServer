@@ -13,7 +13,8 @@ angular.module('starter.services', [])
       description:   'asdf asdf asdf descripció',
       access:   'metro <L2> i <L3> Paral·lel',
       city:   'Barcelona',
-      district:   'Raval'
+      district:   'Raval',
+      assembly: 'PAH Barcelona'
   }, {
       id: 2,
       title: '#desnonament 2',
@@ -23,7 +24,8 @@ angular.module('starter.services', [])
       description:   'asdf asdf asdf descripció',
       access:   'metro <L2> i <L3> Paral·lel',
       city:   'Barcelona',
-      district:   'Raval'
+      district:   'Raval',
+      assembly: 'PAH Barcelona'
   }, {
       id: 3,
       title: '#desnonament 3',
@@ -33,7 +35,8 @@ angular.module('starter.services', [])
       description:   'asdf asdf asdf descripció',
       access:   'metro <L2> i <L3> Paral·lel',
       city:   'Barcelona',
-      district:   'Raval'
+      district:   'Raval',
+      assembly: 'PAH Barcelona'
   }, {
       id: 4,
       title: 'desnonament 4',
@@ -43,7 +46,8 @@ angular.module('starter.services', [])
       description:   'asdf asdf asdf descripció',
       access:   'metro <L2> i <L3> Paral·lel',
       city:   'Barcelona',
-      district:   'Raval'
+      district:   'Raval',
+      assembly: 'PAH Barcelona'
   }, {
       id: 5,
       title: '#desnonament 5',
@@ -53,7 +57,8 @@ angular.module('starter.services', [])
       description:   'asdf asdf asdf descripció',
       access:   'metro <L2> i <L3> Paral·lel',
       city:   'Barcelona',
-      district:   'Raval'
+      district:   'Raval',
+      assembly: 'PAH Barcelona'
   }, {
       id: 6,
       title: '#desnonament 6',
@@ -63,7 +68,8 @@ angular.module('starter.services', [])
       description:   'asdf asdf asdf descripció',
       access:   'metro <L2> i <L3> Paral·lel',
       city:   'Barcelona',
-      district:   'Raval'
+      district:   'Raval',
+      assembly: 'PAH Barcelona'
   }, {
       id: 7,
       title: '#desnonament 7',
@@ -73,7 +79,8 @@ angular.module('starter.services', [])
       description:   'asdf asdf asdf descripció',
       access:   'metro <L2> i <L3> Paral·lel',
       city:   'Barcelona',
-      district:   'Raval'
+      district:   'Raval',
+      assembly: 'PAH Sabadell'
   }, {
       id: 8,
       title: '#desnonament 8',
@@ -83,7 +90,8 @@ angular.module('starter.services', [])
       description:   'asdf asdf asdf descripció',
       access:   'metro <L2> i <L3> Paral·lel',
       city:   'Barcelona',
-      district:   'Raval'
+      district:   'Raval',
+      assembly: 'PAH Sabadell'
   }, {
       id: 9,
       title: '#desnonament 9',
@@ -93,7 +101,8 @@ angular.module('starter.services', [])
       description:   'asdf asdf asdf descripció',
       access:   'metro <L2> i <L3> Paral·lel',
       city:   'Barcelona',
-      district:   'Raval'
+      district:   'Raval',
+      assembly: 'PAH Bages'
   }];
 
 

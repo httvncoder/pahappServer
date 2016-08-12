@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['pascalprecht.translate'])
 
 .controller('EvictionsCtrl', function($scope, Evictions) {
     $scope.evictions = Evictions.all();
@@ -57,7 +57,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('OptionsCtrl', function($scope) {
+.controller('OptionsCtrl', function($scope, $ionicPopup, $translate) {
   $scope.settings = {
     enableFriends: true
   };
@@ -66,4 +66,26 @@ angular.module('starter.controllers', [])
       //window.localStorage.setItem("following", "");
       window.localStorage.clear();
   };
+
+  //confirm box to reset follow data
+  $scope.showConfirm = function() {
+   var confirmPopup = $ionicPopup.confirm({
+     title: 'Oju!',
+     template: 'Segur que vols esborrar les opcions de seguiment?'
+   });
+   confirmPopup.then(function(res) {
+     if(res) {
+       console.log('You are sure');
+       $scope.resetFollowing();
+     } else {
+       console.log('You are not sure');
+     }
+   });
+ };
+
+
+    $scope.ChangeLanguage = function(lang){
+        window.localStorage.setItem('lang', lang);
+		$translate.use(lang);
+    };
 });
