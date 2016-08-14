@@ -27,13 +27,14 @@ exports.addEviction = function(req, res) {
 
 	var eviction = new evictionModel({
 		title: req.body.title,
-		day: req.body.day,
+		date: req.body.day,
 	    hour:   req.body.hour,
 	    direction:   req.body.direction,
 	    description:   req.body.description,
 	    access:   req.body.access,
 	    city:   req.body.city,
-		district: req.body.district
+		district: req.body.district,
+		assembly: req.body.assembly
 	});
 
 	eviction.save(function(err, eviction) {

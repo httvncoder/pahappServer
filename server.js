@@ -26,8 +26,8 @@ app.use(methodOverride());
 app.use(morgan('dev'));
 
 // Import Models and controllers
-var userMdl     = require('./models/userModel')(app, mongoose);
-var userCtrl = require('./controllers/userController');
+var assemblyMdl     = require('./models/assemblyModel')(app, mongoose);
+var assemblyCtrl = require('./controllers/assemblyController');
 
 var evictionMdl     = require('./models/evictionModel')(app, mongoose);
 var evictionCtrl = require('./controllers/evictionController');
@@ -40,15 +40,15 @@ app.use(express.static(__dirname + '/web'));
 // API routes ------------------------------------------------------
 var apiRoutes = express.Router();
 
-apiRoutes.route('/users')
-  .get(userCtrl.findAllUsers)
-  .post(userCtrl.addUser);
-apiRoutes.route('/users/:id')
-    .get(userCtrl.findById);
-apiRoutes.route('/users/byusername/:username')
-    .get(userCtrl.findUserByUsername);
-apiRoutes.route('/auth')
-    .post(userCtrl.login);
+apiRoutes.route('/assemblies')
+  .get(assemblyCtrl.findAllAssemblies)
+  .post(assemblyCtrl.addAssembly);
+apiRoutes.route('/assemblies/:id')
+    .get(assemblyCtrl.findById);
+apiRoutes.route('/assemblies/byassemblyname/:assemblyname')
+    .get(assemblyCtrl.findUserByUsername);
+apiRoutes.route('/assemblies/auth')
+    .post(assemblyCtrl.login);
 
 apiRoutes.route('/evictions')
   .get(evictionCtrl.findAllEvictions);
@@ -81,10 +81,10 @@ apiRoutes.use(function(req, res, next) {
   }
 });
 
-apiRoutes.route('/users/:id')
-  .put(userCtrl.updateActivity)
-  .delete(userCtrl.deleteActivity);
-  apiRoutes.route('/evictions')
+apiRoutes.route('/assemblies/:id')
+  .put(assemblyCtrl.updateActivity)
+  .delete(assemblyCtrl.deleteActivity);
+apiRoutes.route('/evictions')
     .post(evictionCtrl.addEviction);
 
 
