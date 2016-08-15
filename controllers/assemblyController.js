@@ -62,7 +62,7 @@ exports.addAssembly = function(req, res) {
 		direction: req.body.direction,
 	    description:   req.body.description,
 	    city:   req.body.city,
-	    district:   req.body.mail
+	    district:   req.body.district
 	});
 
 	assembly.save(function(err, assembly) {

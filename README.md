@@ -3,33 +3,40 @@
 MEAN (Mongodb + Express + Angular + Nodejs)
 ### funcionalitats de l'API:
 
- **users**
-- crear
-- get users
+ **assemblies**
+- crear new assamblea (user)
+- get assemblies (all)
+- get assembly by id
+- get assembly by name
 - auth users (login)
 
  **evictions**
- - post new eviction
  - get all evictions
+ - post new eviction (cal estar logged)
+ - delete eviction by id (cal estar logged)
+ - delete eviction by title (cal estar logged)
 
 
 ---
 ### estructura base de dades
 
-**user**
-- username: { type: String },
+**assemblea** (des d'on es publiquen pròxims desnonaments)
+- id: { type: String },
+- name: { type: String },
 - password: { type: String },
-- description:   { type: String },
-- icon:   { type: String },
 - mail:   { type: String },
-- admin: { type: Boolean }
+- direction: { type: String },
+- description:   { type: String },
+- city:   { type: String },
+- district: { type: String }
 
 **eviction** (desnonament)
 - title: { type: String },
-- day: { type: String },
+- date: { type: String },
 - hour:   { type: String },
 - direction:   { type: String },
 - description:   { type: String },
 - access:   { type: String },
 - city:   { type: String },
-- district:   { type: String }
+- district:   { type: String },
+- assembly: { type: String }

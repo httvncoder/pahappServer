@@ -87,6 +87,11 @@ apiRoutes.route('/assemblies/:id')
 apiRoutes.route('/evictions')
     .post(evictionCtrl.addEviction);
 
+apiRoutes.route('/evictions/:id')
+    .delete(evictionCtrl.deleteEviction);
+apiRoutes.route('/evictions/byname/:evictiontitle')
+    .delete(evictionCtrl.deleteByEvictionTitle);
+
 
 app.use('/api', apiRoutes);
 // end of API routes -------------------------------------

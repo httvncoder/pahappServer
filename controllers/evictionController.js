@@ -42,3 +42,72 @@ exports.addEviction = function(req, res) {
         res.status(200).jsonp(eviction);
 	});
 };
+
+
+//DELETE - Delete eviction by name of the eviction
+exports.deleteEviction = function(req, res) {
+	evictionModel.findById(req.params.id, function(err, eviction) {
+		if (eviction) {
+			eviction.remove(function(err) {
+				if(err) return res.send(500, err.message);
+	      		//res.status(200).jsonp(req.params.id);
+				console.log("eviction with id" + req.params.id + " deleted");
+				// after remove the eviction, returns the list of existing evictions
+				evictionModel.find(function(err, evictions) {
+					if(err) res.send(500, err.message);
+					 res.status(200).jsonp(evictions);
+				 });
+			})
+		}else{
+			res.status(200).jsonp("eviction with id" + req.params.id + " not found");
+		}
+	});
+};
+
+
+exports.deleteByEvictionTitle = function(req, res) {
+    evictionModel.find({
+      title: req.params.evictiontitle
+  }, function(err, evictions) {
+console.log(evictions);
+      if (err) throw err;
+
+      if (!evictions) {
+        res.json({ success: false, message: 'no eviction found' });
+    } else if (evictions.length>0) {
+        //console.log(evictions);
+          // return the information including token as JSON
+          //res.jsonp(eviction);
+		  /*eviction.remove(function(err){
+			  if(err) return res.send(500, err.message);
+			  res.status(200).jsonp(req.params.id);
+			  console.log('DELETE /evictions/' + req.params.id);
+		  })*/
+		  evictions.forEach(function(eviction){
+			  eviction.remove(function (err) {
+				  if(err) return res.send(500, err.message);
+				   console.log("eviction " + req.params.evictiontitle + " deleted");
+
+
+			   });
+		  })
+		  //un cop esborrats
+		  //nose si retornar 'deleted' o la llista dels evictions que existeixen actualment
+		  //després de l'eliminació
+		  /*res.status(200).jsonp(req.params.evictiontitle + " deleted");*/
+
+		  // after remove the eviction, returns the list of existing evictions
+		  evictionModel.find(function(err, evictions) {
+			  if(err) res.send(500, err.message);
+
+			  console.log('GET /evictions');
+			   res.status(200).jsonp(evictions);
+		   });
+      }else{
+
+  		res.status(200).jsonp(req.params.evictiontitle + " not found");
+		//res.json({ success: false, message: req.params.evictiontitle + " not found" });
+	  }
+
+    });
+};
