@@ -37,6 +37,13 @@ var alertCtrl = require('./controllers/alertController');
 
 app.use(express.static(__dirname + '/web'));
 
+//CORS
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // API routes ------------------------------------------------------
 var apiRoutes = express.Router();
 
@@ -57,6 +64,7 @@ apiRoutes.route('/evictions')
 
 // route middleware to verify a token
 apiRoutes.use(function(req, res, next) {
+
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
   // decode token
