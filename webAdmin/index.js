@@ -76,7 +76,7 @@ function htmlEvictions(d){
     var html="";
     for(var i=0; i<d.length; i++)
     {
-        html+="<div class='card'>";
+        html+="<div class='card col s12 m4 l4'>";
         html+="    <div class='card-image waves-effect waves-block waves-light'>";
         html+="        <img class='activator' style='width:200px!important;' src='img/stopdesnonaments.png'>";
         html+="    </div>";
@@ -152,33 +152,32 @@ function htmlFormNewEviction(){
     html+="             <div onclick='OnBtnPostNewEviction()' class='waves-effect waves-light btn'>Enviar</div>";
     html+="        </div>";
     html+="    </div>";
+    html+="     <div id='loadbar'></div>";
     html+="</form>";
     html+="</div>";
 
     document.getElementById('idAppContent').innerHTML=html;
 }
 function OnBtnPostNewEviction(){
+    ActivateLoadBar();
     obj={
-        title: document.getElementById('title').innerHTML,
-        date: document.getElementById('date').innerHTML,
-        hour: document.getElementById('hour').innerHTML,
-        direction: document.getElementById('direction').innerHTML,
-        description: document.getElementById('description').innerHTML,
-        access: document.getElementById('access').innerHTML,
-        city: document.getElementById('city').innerHTML,
-        district: document.getElementById('district').innerHTML,
-        assembly: assemblyname
+        title: document.getElementById('title').value,
+        date: document.getElementById('date').value,
+        hour: document.getElementById('hour').value,
+        direction: document.getElementById('direction').value,
+        description: document.getElementById('description').value,
+        access: document.getElementById('access').value,
+        city: document.getElementById('city').value,
+        district: document.getElementById('district').value,
+        assembly: localStorage.getItem('pahassemblyname'),
+        token: localStorage.getItem('pahusertoken')//provisional, la idea és passar-ho al header
     };
 
-    var tok="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwiZ2V0dGVycyI6e30sIndhc1BvcHVsYXRlZCI6ZmFsc2UsImFjdGl2ZVBhdGhzIjp7InBhdGhzIjp7Il9fdiI6ImluaXQiLCJkaXN0cmljdCI6ImluaXQiLCJjaXR5IjoiaW5pdCIsImRlc2NyaXB0aW9uIjoiaW5pdCIsImRpcmVjdGlvbiI6ImluaXQiLCJtYWlsIjoiaW5pdCIsInBhc3N3b3JkIjoiaW5pdCIsIm5hbWUiOiJpbml0IiwiX2lkIjoiaW5pdCJ9LCJzdGF0ZXMiOnsiZGVmYXVsdCI6e30sImluaXQiOnsiX192Ijp0cnVlLCJkaXN0cmljdCI6dHJ1ZSwiY2l0eSI6dHJ1ZSwiZGVzY3JpcHRpb24iOnRydWUsImRpcmVjdGlvbiI6dHJ1ZSwibWFpbCI6dHJ1ZSwicGFzc3dvcmQiOnRydWUsIm5hbWUiOnRydWUsIl9pZCI6dHJ1ZX0sIm1vZGlmeSI6e30sInJlcXVpcmUiOnt9fSwic3RhdGVOYW1lcyI6WyJyZXF1aXJlIiwibW9kaWZ5IiwiaW5pdCIsImRlZmF1bHQiXX19LCJpc05ldyI6ZmFsc2UsIl9tYXhMaXN0ZW5lcnMiOjAsIl9kb2MiOnsiX192IjowLCJkaXN0cmljdCI6IlJhdmFsIiwiY2l0eSI6IkJhcmNlbG9uYSIsImRlc2NyaXB0aW9uIjoiZGVzY3JpcGNpbyB1c2VyIDEiLCJkaXJlY3Rpb24iOiJjL0F1cm9yYSIsIm1haWwiOiJtYWlsYXNzMUBhc3MxLnBhaCIsInBhc3N3b3JkIjoiYXNzcGFzcyIsIm5hbWUiOiJhc3MyIiwiX2lkIjoiNTdiMWZhNGM5N2E1ZDFmNjE2MDAwMDAyIn0sIl9wcmVzIjp7InNhdmUiOltudWxsLG51bGwsbnVsbF19LCJfcG9zdHMiOnsic2F2ZSI6W119LCJpYXQiOjE0NzE0NTA5NzYsImV4cCI6MTQ3MTQ1NDU3Nn0.PhS_XgzNh1iNOUNKcOkf9YOMSwIyk38p2xTEtGHu5H4";
     $.ajax({
         type: "POST",
         url: url+"evictions",
         data: obj,
-        headers: {
-            "Content-Type": "application/json",
-            'X-Auth-Token' : tok
-       },
+        dataType: "json",
         success: function(data){
             window.location.href='index.html';
         }
@@ -186,9 +185,19 @@ function OnBtnPostNewEviction(){
 }
 /* </NEW EVICTION */
 
-
+function ActivateLoadBar(){
+    var html="";
+    html+="<div class='progress'>";
+    html+="    <div class='indeterminate'></div>";
+    html+="</div>";
+    document.getElementById('loadbar').innerHTML=html;
+}
+function DesactivateLoadBar(){
+    document.getElementById('loadbar').innerHTML="";
+}
 /* LOGIN */
 function onBtnLogin(){
+    ActivateLoadBar();
     var obj={
         name: document.getElementById('username').value,
         password: document.getElementById('password').value
@@ -201,6 +210,7 @@ function onBtnLogin(){
         success: function(data){
             if(data.success==false)
             {
+                DesactivateLoadBar();
                 toastr.error("login incorrecte");
             }else{
                 localStorage.setItem('pahusertoken', data.token);

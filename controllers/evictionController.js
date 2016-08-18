@@ -36,7 +36,6 @@ exports.addEviction = function(req, res) {
 		district: req.body.district,
 		assembly: req.body.assembly
 	});
-
 	eviction.save(function(err, eviction) {
 		if(err) return res.send(500, err.message);
         res.status(200).jsonp(eviction);
