@@ -2,9 +2,11 @@ var url="http://localhost:3000/api/";
 
 
 
-
-var userlogged=true;
-var assemblyname="PAH Raval";
+var userlogged=false;
+if(localStorage.getItem('pahusertoken')!=null)
+{
+    userlogged=true;
+}
 
 
 function OnLoadIndex(){
@@ -21,14 +23,19 @@ function htmlMainMenu(){
     html+="<nav>";
     html+="    <div class='nav-wrapper teal lighten-2'>";
     html+="        <a href='#!' class='brand-logo'>PAH app ";
-    html+="<div class='chip'>"+assemblyname+"</div>";
+    if(userlogged==true)
+    {
+        html+="<div class='chip'>"+localStorage.getItem('pahassemblyname')+"</div>";
+    }else{
+
+    }
     html+="</a>";
     html+="        <a href='#' data-activates='mobile-demo' class='button-collapse'><i class='material-icons'>menu</i></a>";
     html+="        <ul class='right hide-on-med-and-down'>";
     if(userlogged==true){
         html+="            <li><a href='neweviction.html'><i class='material-icons'>add</i></a></li>";
         html+="            <li><a href='editassembly.html'><i class='material-icons'>perm_identity</i></a></li>";
-        html+="            <li><a href='logout.html'><i class='material-icons'>settings_power</i></a></li>";
+        html+="            <li><a onclick='onBtnLogout()' ><i class='material-icons'>settings_power</i></a></li>";
     }else{
         html+="            <li><a href='signin.html'>Signup</a></li>";
         html+="            <li><a href='login.html'> Login</a></li>";
@@ -39,10 +46,10 @@ function htmlMainMenu(){
     if(userlogged==true){
         html+="            <li><a href='neweviction.html'>Add eviction</a></li>";
         html+="            <li><a href='editassembly.html'>Edit assembly</a></li>";
-        html+="            <li><a href='logout.html'>Logout</a></li>";
+        html+="            <li><a onclick='onBtnLogout()'>Logout</a></li>";
     }else{
-        html+="            <!--<li><a href='signin.html'>Signup</a></li>";
-        html+="            <li><a href='login.html'> Login</a></li>-->";
+        html+="            <li><a href='signin.html'>Signup</a></li>";
+        html+="            <li><a href='login.html'> Login</a></li>";
     }
     html+="        </ul>";
     html+="    </div>";
@@ -177,3 +184,37 @@ function OnBtnPostNewEviction(){
         }
     });
 }
+/* </NEW EVICTION */
+
+
+/* LOGIN */
+function onBtnLogin(){
+    var obj={
+        name: document.getElementById('username').value,
+        password: document.getElementById('password').value
+    };
+    $.ajax({
+        type: "POST",
+        url: url+"assemblies/auth",
+        data: obj,
+        dataType: "json",
+        success: function(data){
+            if(data.success==false)
+            {
+                toastr.error("login incorrecte");
+            }else{
+                localStorage.setItem('pahusertoken', data.token);
+                localStorage.setItem('pahassemblyname', data.assemblyname);
+                window.location.href='index.html';
+            }
+        }
+    });
+}
+/* </LOGIN */
+/* LOGOUT */
+function onBtnLogout(){
+    localStorage.removeItem('pahusertoken');
+    localStorage.removeItem('pahassemblyname');
+    window.location.href='index.html';
+}
+/* </LOGOUT */
