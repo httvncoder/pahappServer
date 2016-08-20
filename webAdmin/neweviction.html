@@ -18,6 +18,10 @@
         <div id='idMainMenu'></div>
         <div id='idAppContent'></div>
 
+<!-- ELECTRON
+Insert this line above script imports
+Works for both browser and electron with the same code -->
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
       <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -27,6 +31,12 @@
       <link type="text/css" rel="stylesheet" href="jslib/toastr.css"/>
 
       <script src="index.js"></script>
+
+
+<!-- ELECTRON
+Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+
 
     </body>
   </html>
