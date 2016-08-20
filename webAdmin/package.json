@@ -1,27 +1,27 @@
 {
-  "name": "electron-quick-start",
+  "name": "PAH-adminAPP",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "admin panel for the PAHapp",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron/electron-quick-start.git"
+    "url": "git+https://github.com/idoctnef/pahapp"
   },
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial"
+    "PAH",
+    "admin",
+    "panel",
+    "app"
   ],
-  "author": "GitHub",
+  "author": "idoctnef",
   "license": "CC0-1.0",
   "bugs": {
     "url": "https://github.com/electron/electron-quick-start/issues"
   },
-  "homepage": "https://github.com/electron/electron-quick-start#readme",
+  "homepage": "https://github.com/idoctnef/pahapp",
   "devDependencies": {
     "electron-prebuilt": "^1.2.0"
   }

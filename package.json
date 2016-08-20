@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "app per avisar de desnonaments. PAH",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+    },
   "dependencies": {
       "mongoose": "~3.6.11",
       "express": "^4.7.1",
@@ -10,5 +13,8 @@
       "body-parser": "^1.5.1",
       "jsonwebtoken" : "latest",
       "morgan" : "latest"
+  },
+  "engines": {
+    "node": "4.4.5"
   }
 }

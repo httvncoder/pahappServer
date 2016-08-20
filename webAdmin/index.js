@@ -1,4 +1,4 @@
-var url="http://localhost:3000/api/";
+var url="http://192.168.1.40:3000/api/";
 
 
 
