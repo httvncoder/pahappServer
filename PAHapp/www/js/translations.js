@@ -14,7 +14,7 @@ var translations = {
 		"language": "idioma actual: castellano",
 		"Notifications": "Notificaciones",
 		"Evictions": "Deshaucios",
-		"Assemblies": "Assembleas",
+		"Assemblies": "Assambleas",
 		"Options": "Opciones",
 		"Reset_Followings": "Resetea seguimientos!",
 		"following": "siguiendo",

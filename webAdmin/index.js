@@ -22,7 +22,7 @@ function htmlMainMenu(){
 
     html+="<nav>";
     html+="    <div class='nav-wrapper teal lighten-2'>";
-    html+="        <a href='#!' class='brand-logo'>PAH app ";
+    html+="        <a href='index.html' class='brand-logo'>PAH app ";
     if(userlogged==true)
     {
         html+="<div class='chip'>"+localStorage.getItem('pahassemblyname')+"</div>";
@@ -82,7 +82,10 @@ function htmlEvictions(d){
         html+="    </div>";
         html+="    <div class='card-content'>";
         html+="        <span class='card-title activator grey-text text-darken-4'>"+d[i].title+"<i class='material-icons right'>more_vert</i></span>";
-        html+="        <p><a href='#'>"+d[i].assembly+"</a></p>";
+        if(d[i].assembly==localStorage.getItem('pahassemblyname'))
+        {
+            html+="        <p><a href='eviction.html?="+d[i]._id+"' class='btn'>Edit</a></p>";
+        }
         html+="    </div>";
         html+="    <div class='card-reveal'>";
         html+="        <span class='card-title grey-text text-darken-4'>"+d[i].title+"<i class='material-icons right'>close</i></span>";
@@ -228,3 +231,148 @@ function onBtnLogout(){
     window.location.href='index.html';
 }
 /* </LOGOUT */
+
+
+
+
+/* EVICTION.html */
+var wEviction; //wEviction--> working Eviction
+function OnLoadEviction(){
+
+    htmlMainMenu();
+
+    var idEviction = window.location.href.split('?=')[1];
+
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: url+"evictions/" + idEviction,
+        success: function(data){
+            wEviction=JSON.parse(JSON.stringify(data));
+            console.log(wEviction);
+            var html="";
+            html+="<h3>"+ data.title +"</h3>";
+            html+="        <p>"+data.description+"</p>";
+            html+="        <p>"+data.hour+"</p>";
+            html+="        <p>"+data.direction+"</p>";
+            html+="        <p>"+data.access+"</p>";
+            html+="        <p>"+data.city+"</p>";
+            html+="        <p>"+data.district+"</p>";
+            html+="        <p>"+data.assembly+"</p>";
+            if(data.assembly=localStorage.getItem('pahassemblyname'))
+            {
+                html+="<div class='right right-align'>";
+                html+=" <div onclick='onBtnEditEviction()' class='waves-effect waves-light btn green lighten-2'>Edit eviction</div>";
+                html+=" <br><br>";
+                html+=" <div onclick='onBtnDeleteEviction()' class='waves-effect waves-light btn red lighten-2'>Delete eviction</div>";
+                html+="</div>";
+            }
+            document.getElementById('idAppContent').innerHTML+=html;
+        }
+    });
+}
+function onBtnEditEviction(){
+    var html="";
+
+    html+="<div class='row'>";
+    html+="<form class='col s12'>";
+    html+="    <div class='row'>";
+    html+="        <div class='input-field col s6'>";
+    html+="            <input value='"+wEviction.title+"' id='title' type='text' class='validate'>";
+    html+="            <label class='active' for='title'>Title</label>";
+    html+="        </div>";
+    html+="        <div class='input-field col s6'>";
+    html+="            <input value='"+wEviction.description+"' id='description' type='text' class='validate'>";
+    html+="            <label class='active' for='description'>Description</label>";
+    html+="        </div>";
+    html+="    </div>";
+    html+="    <div class='row'>";
+    html+="        <div class='input-field col s6'>";
+    html+="            <input value='"+wEviction.date+"' id='date' type='text' class='validate'>";
+    html+="            <label class='active' for='date'>Date</label>";
+    html+="        </div>";
+    html+="        <div class='input-field col s6'>";
+    html+="            <input value='"+wEviction.hour+"' id='hour' type='text' class='validate'>";
+    html+="            <label class='active' for='hour'>Hour</label>";
+    html+="        </div>";
+    html+="    </div>";
+    html+="    <div class='row'>";
+    html+="        <div class='input-field col s6'>";
+    html+="            <input value='"+wEviction.direction+"' id='direction' type='text' class='validate'>";
+    html+="            <label class='active' for='direction'>Direction</label>";
+    html+="        </div>";
+    html+="        <div class='input-field col s6'>";
+    html+="            <input value='"+wEviction.access+"' id='access' type='text' class='validate'>";
+    html+="            <label class='active' for='access'>Access</label>";
+    html+="        </div>";
+    html+="    </div>";
+    html+="    <div class='row'>";
+    html+="        <div class='input-field col s6'>";
+    html+="            <input value='"+wEviction.district+"' id='district' type='text' class='validate'>";
+    html+="            <label class='active' for='district'>District</label>";
+    html+="        </div>";
+    html+="        <div class='input-field col s6'>";
+    html+="            <input value='"+wEviction.city+"' id='city' type='text' class='validate'>";
+    html+="            <label class='active' for='city'>City</label>";
+    html+="        </div>";
+    html+="    </div>";
+    html+="    <div class='row'>";
+    html+="        <div class='input-field col s12'>";
+    html+="             <div onclick='onBtnCancelEditEviction()' class='waves-effect waves-light btn indigo lighten-2'>Cancel</div>";
+    html+="             <div onclick='onBtnUpdateEviction()' class='waves-effect waves-light btn right'>Actualitzar</div>";
+    html+="        </div>";
+    html+="    </div>";
+    html+="     <div id='loadbar'></div>";
+    html+="</form>";
+    html+="</div>";
+
+    document.getElementById('idAppContent').innerHTML=html;
+}
+function onBtnCancelEditEviction(){
+    window.location.href=window.location.href;
+}
+function onBtnUpdateEviction(){
+    ActivateLoadBar();
+    obj={
+        title: document.getElementById('title').value,
+        date: document.getElementById('date').value,
+        hour: document.getElementById('hour').value,
+        direction: document.getElementById('direction').value,
+        description: document.getElementById('description').value,
+        access: document.getElementById('access').value,
+        city: document.getElementById('city').value,
+        district: document.getElementById('district').value,
+        assembly: localStorage.getItem('pahassemblyname'),
+        token: localStorage.getItem('pahusertoken')//provisional, la idea és passar-ho al header
+    };
+
+    $.ajax({
+        type: "PUT",
+        url: url+"evictions/"+wEviction._id,
+        data: obj,
+        dataType: "json",
+        success: function(data){
+            window.location.href=window.location.href;
+        }
+    });
+}
+function onBtnDeleteEviction(){
+    document.getElementById('idAppContent').innerHTML+="<div id='loadbar'></div>";
+    ActivateLoadBar();
+    obj={
+        token: localStorage.getItem('pahusertoken')//provisional, la idea és passar-ho al header
+    };
+    $.ajax({
+        type: "DELETE",
+        url: url+"evictions/"+wEviction._id,
+        data: obj,
+        dataType: "json",
+        success: function(data){
+            toastr.success("Eviction deleted");
+            setTimeout(function(){
+                window.location.href='index.html';
+            }, 1000);
+        }
+    });
+}
+/* </EVICTION.html */

@@ -17,6 +17,9 @@ mongoose.connect(config.database, function(err, res) {
 });
 app.set('superSecret', config.secret); // secret variable
 
+//poder accedir al server i interactuar
+app.use(express.static(__dirname + '/webAdmin'));
+
 // Middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -40,6 +43,7 @@ app.use(express.static(__dirname + '/web'));
 //CORS
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -59,6 +63,8 @@ apiRoutes.route('/assemblies/auth')
 
 apiRoutes.route('/evictions')
   .get(evictionCtrl.findAllEvictions);
+apiRoutes.route('/evictions/:id')
+  .get(evictionCtrl.findById);
 
 
 
@@ -68,7 +74,7 @@ apiRoutes.use(function(req, res, next) {
   // check header or url parameters or post parameters for token
   var token = req.body.token || req.query.token || req.headers['x-access-token'];
   // decode token
-  console.log(token);
+
   if (token) {
     // verifies secret and checks exp
     jwt.verify(token, app.get('superSecret'), function(err, decoded) {
@@ -83,7 +89,7 @@ apiRoutes.use(function(req, res, next) {
   } else {
     // if there is no token
     // return an error
-    return res.status(403).send({
+    return res.status(200).send({
         success: false,
         message: 'No token provided.'
     });
@@ -97,6 +103,7 @@ apiRoutes.route('/evictions')
     .post(evictionCtrl.addEviction);
 
 apiRoutes.route('/evictions/:id')
+  .put(evictionCtrl.updateEviction)
     .delete(evictionCtrl.deleteEviction);
 apiRoutes.route('/evictions/byname/:evictiontitle')
     .delete(evictionCtrl.deleteByEvictionTitle);

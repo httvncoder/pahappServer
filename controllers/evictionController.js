@@ -20,6 +20,14 @@ exports.findAllEvictions = function(req, res) {
 	});
 };
 
+//GET - returns eviction by id
+exports.findById = function(req, res) {
+	evictionModel.findById(req.params.id, function(err, eviction) {
+    	if(err) return res.send(500, err.message);
+		res.status(200).jsonp(eviction);
+	});
+};
+
 //POST - eviction
 exports.addEviction = function(req, res) {
 	//console.log('POST new user, name: ' + req.body.username);
@@ -27,7 +35,7 @@ exports.addEviction = function(req, res) {
 
 	var eviction = new evictionModel({
 		title: req.body.title,
-		date: req.body.day,
+		date: req.body.date,
 	    hour:   req.body.hour,
 	    direction:   req.body.direction,
 	    description:   req.body.description,
@@ -42,6 +50,25 @@ exports.addEviction = function(req, res) {
 	});
 };
 
+//PUT - Update an eviction already exists
+exports.updateEviction = function(req, res) {
+	evictionModel.findById(req.params.id, function(err, eviction) {
+		eviction.title   = req.body.title;
+		eviction.date    = req.body.date;
+		eviction.hour = req.body.hour;
+		eviction.direction  = req.body.direction;
+		eviction.description = req.body.description;
+		eviction.access   = req.body.access;
+		eviction.city = req.body.city;
+		eviction.district = req.body.district;
+		eviction.assembly = req.body.assembly;
+
+		eviction.save(function(err) {
+			if(err) return res.send(500, err.message);
+      		res.status(200).jsonp(eviction);
+		});
+	});
+};
 
 //DELETE - Delete eviction by name of the eviction
 exports.deleteEviction = function(req, res) {
