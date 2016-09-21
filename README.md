@@ -1,42 +1,44 @@
 # pahapp
 
+frontend: https://github.com/arnaucode/pahappApp
+
 MEAN (Mongodb + Express + Angular + Nodejs)
-### funcionalitats de l'API:
-
- **assemblies**
-- crear new assamblea (user)
-- get assemblies (all)
-- get assembly by id
-- get assembly by name
-- auth users (login)
-
- **evictions**
- - get all evictions
- - post new eviction (cal estar logged)
- - delete eviction by id (cal estar logged)
- - delete eviction by title (cal estar logged)
 
 
+##To Do List:
+**Backend and Frontend:**
+```
+-findAllAssemblies	                                                 --> done
+-post new assembly                                                   --> done
+-post new eviction to assembly                                       --> done
+
+-api more secure and robust (comprovations, hash passwords, ...)
+
+```
 ---
 ### estructura base de dades
 
+```
 **assemblea** (des d'on es publiquen pròxims desnonaments)
-- id: { type: String },
-- name: { type: String },
-- password: { type: String },
-- mail:   { type: String },
-- direction: { type: String },
-- description:   { type: String },
-- city:   { type: String },
-- district: { type: String }
-
-**eviction** (desnonament)
-- title: { type: String },
-- date: { type: String },
-- hour:   { type: String },
-- direction:   { type: String },
-- description:   { type: String },
-- access:   { type: String },
-- city:   { type: String },
-- district:   { type: String },
-- assembly: { type: String }
+var assemblySchema = new Schema({
+    id: { type: String },
+    name: { type: String },
+    password: { type: String },
+    mail:   { type: String },
+    phone: { type: Number },
+    direction: { type: String },
+    description:   { type: String },
+    city:   { type: String },
+    district: { type: String },
+    evictions: [{
+      id: { type: String },
+      title: { type: String },
+      date: { type: Date },
+      direction: { type: String },
+      description: { type: String },
+      access: { type: String },
+      city: { type: String },
+      district: { type: String }
+    }]
+})
+```

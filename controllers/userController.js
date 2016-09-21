@@ -71,7 +71,7 @@ exports.addUser = function(req, res) {
 };
 
 //PUT - Update a register already exists
-exports.updateActivity = function(req, res) {
+exports.updateUser = function(req, res) {
 	ActivityModel.findById(req.params.id, function(err, tvshow) {
 		tvshow.title   = req.body.petId;
 		tvshow.year    = req.body.year;
@@ -89,7 +89,7 @@ exports.updateActivity = function(req, res) {
 };
 
 //DELETE - Delete a TVShow with specified ID
-exports.deleteActivity = function(req, res) {
+exports.deleteUser = function(req, res) {
 	ActivityModel.findById(req.params.id, function(err, activity) {
 		activity.remove(function(err) {
 			if(err) return res.send(500, err.message);

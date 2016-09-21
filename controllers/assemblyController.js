@@ -59,16 +59,42 @@ exports.addAssembly = function(req, res) {
 		name: req.body.name,
 		password: req.body.password,
 		mail: req.body.mail,
+		phone: req.body.phone,
 		direction: req.body.direction,
-	    description:   req.body.description,
-	    city:   req.body.city,
-	    district:   req.body.district
+    description:   req.body.description,
+    city:   req.body.city,
+    district:   req.body.district
 	});
 
 	assembly.save(function(err, assembly) {
 		if(err) return res.send(500, err.message);
     res.status(200).jsonp(assembly);
 	});
+};
+exports.addEviction = function(req, res) {
+	console.log('POST new eviction, title: ' + req.body.title);
+
+	console.log(req.params.id);
+
+	assemblyModel.findById(req.params.id, function(err, assembly){
+		console.log(assembly.name);
+		var eviction = {
+			title: req.body.title,
+			date: req.body.date,
+			direction: req.body.direction,
+	    description:   req.body.description,
+			access: req.body.access,
+	    city:   req.body.city,
+	    district:   req.body.district
+		};
+		assembly.evictions.push(eviction);
+
+		assembly.save(function(err, assembly) {
+			if(err) return res.send(500, err.message);
+	    res.status(200).jsonp(assembly);
+		});
+	});
+
 };
 
 //PUT - Update a register already exists
