@@ -56,6 +56,10 @@ var apiRoutes = express.Router();
 apiRoutes.route('/assemblies')
   .get(assemblyCtrl.findAllAssemblies)
   .post(assemblyCtrl.addAssembly);
+
+apiRoutes.route('/assemblies/:assemblyname')
+  .get(assemblyCtrl.findAssemblyByAssemblyname);
+
 apiRoutes.route('/assemblies/:id/evictions')
   .post(assemblyCtrl.addEviction);
 

@@ -6,15 +6,19 @@ MEAN (Mongodb + Express + Angular + Nodejs)
 
 
 ##To Do List:
-**Backend and Frontend:**
+**Backend - Frontend**
 ```
--findAllAssemblies	                                                 --> done
--post new assembly                                                   --> done
--post new eviction to assembly                                       --> done
+                                                      backend - frontend
+-findAllAssemblies	                                 --> done - todo
+-post new assembly                                   --> done - todo
+-post new eviction to assembly                       --> done - todo
+-get assembly by name                                --> done - todo
 
 -api more secure and robust (comprovations, hash passwords, ...)
 
 ```
+
+
 ---
 ### estructura base de dades
 
