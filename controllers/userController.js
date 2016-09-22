@@ -101,7 +101,7 @@ exports.deleteUser = function(req, res) {
 
 
 //POST - auth user
-exports.login = function(req, res) {
+exports.loginUser = function(req, res) {
 	// find the user
   userModel.findOne({
     username: req.body.username

@@ -9,7 +9,7 @@ MEAN (Mongodb + Express + Angular + Nodejs)
 **Backend - Frontend**
 ```
                                                       backend - frontend
--findAllAssemblies	                                 --> done - todo
+-findAllAssemblies	                                 --> done - done
 -post new assembly                                   --> done - todo
 -post new eviction to assembly                       --> done - todo
 -get assembly by name                                --> done - todo

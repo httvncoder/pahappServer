@@ -102,9 +102,10 @@ exports.addEviction = function(req, res) {
 
 //POST - auth assembly
 exports.login = function(req, res) {
+	console.log("login assembly: " + req.body.assemblyName);
 	// find the assembly
   assemblyModel.findOne({
-    name: req.body.name
+    name: req.body.assemblyName
 }, function(err, assembly) {
 
     if (err) throw err;
@@ -130,7 +131,8 @@ exports.login = function(req, res) {
           success: true,
           message: 'Enjoy your token!',
           token: token,
-		  assemblyname:req.body.name
+					assemblyId: assembly._id,
+		  		assemblyName: assembly.name
         });
       }
 

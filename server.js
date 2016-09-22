@@ -64,7 +64,7 @@ apiRoutes.route('/assemblies/:id/evictions')
   .post(assemblyCtrl.addEviction);
 
 apiRoutes.route('/auth')
-    .post(userCtrl.login);
+    .post(assemblyCtrl.login);
 
 
 // OJU AQUÏ TREC la verificació de token temporalment, per fer les proves des de l'app
